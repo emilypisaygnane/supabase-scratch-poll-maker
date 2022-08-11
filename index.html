@@ -5,27 +5,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/global.css" />
-    <title>Web App</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <title>Are You Feeling Indecisive, Girlie Pop?</title>
 </head>
 
 <body>
     <header>
-        <img src="/assets/html_css_js.png">
-        <h1>Web App</h1>
+        <h1>Make Up Your Mind Girlie! 💁🏻😫</h1>
     </header>
 
     <main>
+        <div class="top-section">
+            <section class="left-section">
+                <form id="poll-form">
+                    <h2>Your Poll:</h2>
+                    <label>Question:
+                        <input id="input" name="question">
+                    </label>
+                    <label>Option A:
+                        <input id="input" name="input-a">
+                    </label>
+                    <label>Option B:
+                        <input id="input" name="input-b">
+                    </label>
+                    <button id="start-input">Start Your Poll</button>
+                </form>
+            </section>
 
+            <section class="right-section">
+                    <h2>Current Poll</h2>
+                        <p>Your Question:
+                            <div id="live-question">
+                            
+                            </div>
+                        </p>
+                            <div id="live-option-a">
+
+                            </div>
+                        <p id="option-a-score">0</p>
+                        <button id="option-a-like">Up Votes</button>
+                        <button id="option-a-dislike">Down Votes</button>
+
+                            <div id="live-option-b">
+                        
+                            </div>
+                        <p id="option-b-score">0</p>
+                        <button id="option-b-like">Up Votes</button>
+                        <button id="option-b-dislike">Down Votes</button>
+                        
+                        <div>
+                            <button id="publish-button">Publish</button>
+                        </div>
+            </section>
+        </div>
+        <div>
+            <section class="bottom-section">
+                <div id="past-polls">
+                    
+                </div>
+            </section>
+        </div>
     </main>
 
-    <footer>&copy;2022 Software Developer</footer>
+    <footer>&copy;2022 Emily Pisaygnane</footer>
 
     <script type="module" src="app.js"></script>
 </body>
