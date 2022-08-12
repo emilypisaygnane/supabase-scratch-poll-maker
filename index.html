@@ -27,49 +27,41 @@
                 <form id="poll-form">
                     <h2>Your Poll:</h2>
                     <label>Question:
-                        <input id="input" name="question">
+                        <input id="text" name="question">
                     </label>
                     <label>Option A:
-                        <input id="input" name="input-a">
+                        <input id="text" name="option-a">
                     </label>
                     <label>Option B:
-                        <input id="input" name="input-b">
+                        <input id="text" name="option-b">
                     </label>
                     <button id="start-input">Start Your Poll</button>
                 </form>
             </section>
 
             <section class="right-section">
-                    <h2>Current Poll</h2>
-                        <p>Your Question:
-                            <div id="live-question">
-                            
-                            </div>
-                        </p>
-                            <div id="live-option-a">
-
-                            </div>
-                        <p id="option-a-score">0</p>
-                        <button id="option-a-like">Up Votes</button>
-                        <button id="option-a-dislike">Down Votes</button>
-
-                            <div id="live-option-b">
-                        
-                            </div>
-                        <p id="option-b-score">0</p>
-                        <button id="option-b-like">Up Votes</button>
-                        <button id="option-b-dislike">Down Votes</button>
-                        
-                        <div>
-                            <button id="publish-button">Publish</button>
-                        </div>
+                <h1>Current Poll</h1>
+                <h2 id="question">Your Question:</h2>
+                <div id=option">
+                    <span id="option-a"></span>
+                    <button id="vote-a">0</button>
+                </div>
+                <div class="option">
+                    <span id="option-b"></span>
+                    <button id="vote-b">0</button>
+                </div>
+                <div>
+                    <button id="publish-poll">Publish</button>
+                </div>
             </section>
         </div>
         <div>
             <section class="bottom-section">
-                <div id="past-polls">
-                    
+                <h1>Past Polls</h1>
+                <div id="poll-list" class="poll-list">
+
                 </div>
+                    
             </section>
         </div>
     </main>

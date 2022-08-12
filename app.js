@@ -2,99 +2,87 @@ import { createNewPoll, getPolls } from './fetch-utils.js';
 import { renderPoll } from './render-utils.js';
 
 const pollForm = document.getElementById('poll-form');
-const currentQuestion = document.getElementById('live-question');
-const currentOptionA = document.getElementById('live-option-a');
-const currentOptionB = document.getElementById('live-option-b');
-const optionAUp = document.getElementById('option-a-like');
-const optionADown = document.getElementById('option-a-dislike');
-const optionBUp = document.getElementById('option-b-like');
-const optionBDown = document.getElementById('option-b-dislike');
-const publishButtonEl = document.getElementById('publish-button');
-const pastPollsDisplay = document.getElementById('past-polls');
-const scoreA = document.getElementById('option-a-score');
-const scoreB = document.getElementById('option-b-score');
+const voteA = document.getElementById('vote-a');
+const voteB = document.getElementById('vote-b');
+const publishPoll = document.getElementById('publish-poll');
 
 let question = '';
 let optionA = '';
 let optionB = '';
-let optionACount = 0;
-let optionBCount = 0;
+let optionAVotes = 0;
+let optionBVotes = 0;
 
 pollForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const data = new FormData(pollForm);
 
-    const userQuestion = data.get('question');
-    const userOptionA = data.get('input-a');
-    const userOptionB = data.get('input-b');
-
-    question = userQuestion;
-    optionA = userOptionA;
-    optionB = userOptionB;
+    question = data.get('question');
+    optionA = data.get('option-a');
+    optionB = data.get('option-b');
 
     displayCurrentPollEl();
-    pollForm.reset();
-
 });
 
-optionAUp.addEventListener('click', () => {
-    optionACount++;
-    scoreA.textContent = optionACount;
+function displayCurrentPollEl() {
+    const questionEl = document.getElementById('question');
+    questionEl.textContent = question;
+    
+    const optionAEl = document.getElementById('option-a');
+    optionAEl.textContent = optionA;
+
+    const optionBEl = document. getElementById('option-b');
+    optionBEl.textContent = optionB;
+
+    voteA.textContent = optionAVotes;
+    voteB.textContent = optionBVotes;
+}
+
+voteA.addEventListener('click', () => {
+    optionAVotes++;
+    voteA.textContent = optionAVotes;
 });
 
-optionADown.addEventListener('click', () => {
-    optionACount--;
-    scoreA.textContent = optionACount;
-});
+voteB.addEventListener('click', () => {
+    optionBVotes++;
+    voteB.textContent = optionBVotes;
+})
 
-optionBUp.addEventListener('click', () => {
-    optionBCount++;
-    scoreB.textContent = optionBCount;
-});
-
-optionBDown.addEventListener('click', () => {
-    optionBCount--;
-    scoreB.textContent = optionBCount;
-});
-
-publishButtonEl.addEventListener('click', async () => {
+publishPoll.addEventListener('click', async () => {
 
     const data = {
-        question: question,
-        optionA: optionA,
-        optionB: optionB,
-        optionACount: optionACount,
-        optionBCount: optionBCount,
+        question,
+        option_a: optionA,
+        option_b: optionB,
+        option_a_votes: optionAVotes,
+        option_b_votes: optionBVotes,
     };
 
     const resp = await createNewPoll(data);
     question = '';
     optionA = '';
     optionB = '';
-    optionACount = 0;
-    optionBCount = 0;
+    optionAVotes = 0;
+    optionBVotes = 0;
 
     displayAllPolls();
+
+    return resp.data;
 });
 
 async function displayAllPolls() {
-    pastPollsDisplay.textContent = '';
+    const pollList = document.getElementById('poll-list');
 
-    const pastPolls = await getPolls();
-    for (let pastPoll of pastPolls) {
-        const pastPollEl = renderPoll(pastPoll);
-        pastPollsDisplay.append(pastPollEl);
+    pollList.textContent = '';
+
+    const polls = await getPolls();
+
+    for (let poll of polls) {
+        const div = renderPoll(poll);
+        pollList.append(div);
     }
-    
 }
 
-function displayCurrentPollEl() {
-    currentQuestion.textContent = question;
-    currentOptionA.textContent = optionA;
-    currentOptionB.textContent = optionB;
-    scoreA.textContent = optionACount;
-    scoreB.textContent = optionBCount;
+displayAllPolls();
 
-}
 
