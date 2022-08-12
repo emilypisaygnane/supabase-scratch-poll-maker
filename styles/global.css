@@ -1,23 +1,18 @@
-:root {
-    --background: rgb(224, 234, 247);
-    --header-background: white;
-    --footer-background: rgb(243, 242, 242);
-}
-
 body {
     height: 100vh;
     font-family: 'Rubik', san-serif;
-    background: var(--background);
+    background: rgb(191, 199, 247);
     display: grid;
+    color: rgb(0, 0, 0);
     grid-template-rows: auto 1fr auto;
 }
 
 header {
-    position: sticky;
     top: 0;
     display: flex;
     align-items: center;
-    background-color: var(--header-background);
+    justify-content: center;
+    background-color: rgb(247, 188, 166) ;
 }
 
 main {
@@ -32,4 +27,55 @@ footer {
     display: flex;
     justify-content: flex-end;
     background-color: var(--footer-background);
+}
+
+#text {
+    display: flex;
+    margin: 10px;
+    padding: 5px;
+}
+
+#question {
+    padding: 10px;
+}
+.top-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: solid rgb(247, 188, 166) 2px;
+}
+
+.right-section, .left-section {
+    display: block;
+    padding: 15px;
+
+}
+#publish-poll, #start-input, #vote-a, #vote-b {
+    margin: 10px 50px;
+    border: solid rgb(255, 255, 255) 1px;
+}
+
+.bottom-section {
+    display: block;
+    margin: 10px;
+    padding: 15px;
+    border: solid rgb(247, 188, 166) 2px;
+}
+.poll-list {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+}
+
+.poll-detail {
+    width: 30%;
+    padding: 15px;
+    margin: 10px;
+    background: rgb(247, 188, 166);
+    border: solid 1.5px white;
+    border-radius: 5px;
+    text-align: center;
+}
+h1 {
+    text-align: center;
 }

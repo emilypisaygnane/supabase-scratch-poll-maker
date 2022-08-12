@@ -19,6 +19,7 @@ export async function getPolls() {
     const resp = await client
         .from('polls')
         .select('*');
+        
     if (resp.error) {
         throw new Error(resp.error.message);
     }

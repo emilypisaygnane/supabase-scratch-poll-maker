@@ -46,7 +46,7 @@ voteA.addEventListener('click', () => {
 voteB.addEventListener('click', () => {
     optionBVotes++;
     voteB.textContent = optionBVotes;
-})
+});
 
 publishPoll.addEventListener('click', async () => {
 

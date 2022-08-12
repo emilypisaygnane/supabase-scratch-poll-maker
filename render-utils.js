@@ -6,10 +6,10 @@ export function renderPoll(poll) {
     h3.textContent = poll.question;
 
     const p1 = document.createElement('p');
-    p1.textContent = `${poll.option_a}; ${poll.option_a_votes}`;
+    p1.textContent = `${poll.option_a}: ${poll.option_a_votes}`;
 
     const p2 = document.createElement('p');
-    p2.textContent = `${poll.option_b}; ${poll.option_b_votes}`;
+    p2.textContent = `${poll.option_b}: ${poll.option_b_votes}`;
 
     container.append(h3, p1, p2);
 
