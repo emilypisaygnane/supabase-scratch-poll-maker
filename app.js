@@ -1,4 +1,5 @@
-
+import { createNewPoll, getPolls } from './fetch-utils.js';
+import { renderPoll } from './render-utils.js';
 
 const pollForm = document.getElementById('poll-form');
 const currentQuestion = document.getElementById('live-question');
@@ -13,14 +14,11 @@ const pastPollsDisplay = document.getElementById('past-polls');
 const scoreA = document.getElementById('option-a-score');
 const scoreB = document.getElementById('option-b-score');
 
-
 let question = '';
 let optionA = '';
 let optionB = '';
 let optionACount = 0;
 let optionBCount = 0;
-
-let pastPolls = [];
 
 pollForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -35,7 +33,7 @@ pollForm.addEventListener('submit', (e) => {
     optionA = userOptionA;
     optionB = userOptionB;
 
-    displayCurrentPoll();
+    displayCurrentPollEl();
     pollForm.reset();
 
 });
@@ -78,8 +76,6 @@ publishButtonEl.addEventListener('click', async () => {
     optionBCount = 0;
 
     displayAllPolls();
-
-    pollReset();
 });
 
 async function displayAllPolls() {
@@ -87,13 +83,13 @@ async function displayAllPolls() {
 
     const pastPolls = await getPolls();
     for (let pastPoll of pastPolls) {
-        const pastPOllEl = renderPoll(pastPoll);
-        pastPollsDisplay.append(pastPOllEl);
+        const pastPollEl = renderPoll(pastPoll);
+        pastPollsDisplay.append(pastPollEl);
     }
     
 }
 
-function displayCurrentPoll() {
+function displayCurrentPollEl() {
     currentQuestion.textContent = question;
     currentOptionA.textContent = optionA;
     currentOptionB.textContent = optionB;
@@ -102,15 +98,3 @@ function displayCurrentPoll() {
 
 }
 
-function pollReset() {
-    currentQuestion.textContent = '';
-    currentOptionA.textContent = '';
-    currentOptionB.textContent = '';
-    scoreA.textContent = 0;
-    scoreB.textContent = 0;
-    question = '';
-    optionA = '';
-    optionB = '';
-    optionACount = 0;
-    optionBCount = 0;
-}
