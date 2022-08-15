@@ -65,6 +65,7 @@ publishPoll.addEventListener('click', async () => {
     optionAVotes = 0;
     optionBVotes = 0;
 
+    displayCurrentPollEl();
     displayAllPolls();
 
     return resp.data;
